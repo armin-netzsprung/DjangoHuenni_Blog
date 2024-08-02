@@ -1,0 +1,71 @@
+{% extends 'index.html' %} {% load static %} {% block content%}
+{% comment "Tutorial Beschreibung" %}
+    <articel>           Inhalte im HTML Dokument, die zusammengehören. Jeder post gruppieren wir in jenen
+    <h1> bis <h6>       definieren die Überschriften. Man sollte darauf achten, dass die in einer Seite zweckst Google-SEO 
+                        hierachisch aufgebaut sind
+                        
+    {{ post.published_date|date:"d. F Y h:m T" }}   Formatiert das Datenbank Datum in ein deutsche Format. Siehe hierzu auch
+                                                    https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#date
+    {{ post.text|linebreaksbr|truncatechars:350 }}  gibt den Text des Postes aus. 
+                                                    linebreaksbr:       formatiert die Umbrüche in das Html Tag <br>
+                                                    truncatechars:350:  werden nur die ersten 350 Zeichen angezeigt.
+    {{ post.title }}    gibt den Titel des Postes aus
+{% endcomment %}
+
+
+    <h2 class="post-h2">Hier die aktuellen Beiträge:</h2>
+    {% if user.is_authenticated %}
+        <div class="container div-center">
+            <a href="{% url 'post_create' %}" class="btn-blog">Neuen Beitrag hinzufügen</a>
+        </div>
+    {% endif %}
+    
+    {% for post in posts %}
+        <article class="post">
+            <div class="post-container-header">
+                <a href="{% url 'post_detail' post.pk %}" class="post-link-detail">{{ post.title }}</a>
+                <div>
+                    {% if user.is_authenticated %}
+                    <div class="div-btn-rechts">
+                        <a href="{% url 'post_update' post.pk %}" class="btn-blog">Bearbeiten</a>
+                    </div>
+                    <div class="div-btn-rechts">
+                        <a href="{% url 'post_delete' post.pk %}" class="btn-post-danger">endgültig Löschen</a>
+                    </div>
+                    {% endif  %}
+                    <small>
+                        <strong>veröffentlicht am: </strong>{{ post.published_date|date:"d. F Y h:m" }}<strong> von </strong>{{ post.author }}
+                        </br>
+                        <strong>erstellt am: </strong>{{ post.created_date|date:"d. F Y h:m" }}<strong> von </strong>{{ post.author }}
+                        </br>
+                        <div class="row">
+                            <div class="col-4">
+                                <p><strong>in den Kategorien:</strong> </p>
+                                {% for category in post.category1.all %}
+                                    {{ category.name }}</br>
+                                {% endfor %}
+                                {% for category in post.category2.all %}
+                                    {{ category.name }}</br>
+                                {% endfor %}
+                            </div>
+                            <div class="col-4">
+                                <p><strong>in den Rubriken: </strong></p>
+                                {% for rubric in post.rubric.all %}
+                                    {{ rubric.name }}</br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </small>
+                </div>
+            </div>
+            <div class="post-content">{{ post.content|safe|truncatechars:350 }}</div>
+        </article>
+    {% endfor %}
+
+    {% comment "Tutorial Beschreibung" %}
+        Hier wird die Pagination-Template am Ende der Blog Liste eingeblendet
+    {% endcomment %}
+
+    {% include "huenni_blog/pagination.html" with page=posts %}
+
+{% endblock %} 

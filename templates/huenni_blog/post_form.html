@@ -1,0 +1,52 @@
+{% extends 'index.html' %} 
+{% load crispy_forms_tags %}
+
+{% comment "Tutorial Beschreibung" %}
+    <articel>           Inhalte im HTML Dokument, die zusammengehören. Jeder post gruppieren wir in jenen
+    <h1> bis <h6>       definieren die Überschriften. Man sollte darauf achten, dass die in einer Seite zweckst Google-SEO 
+                        hierachisch aufgebaut sind
+                        
+    {{ post.published_date|date:"d. F Y h:m T" }}   Formatiert das Datenbank Datum in ein deutsche Format. Siehe hierzu auch
+                                                    https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#date
+    {{ post.text|linebreaksbr|truncatechars:350 }}  gibt den Text des Postes aus. 
+                                                    linebreaksbr:       formatiert die Umbrüche in das Html Tag <br>
+                                                    truncatechars:350:  werden nur die ersten 350 Zeichen angezeigt.
+    {{ post.title }}    gibt den Titel des Postes aus
+{% endcomment %}
+
+{% block content %}
+<div class="d-flex align-items-center">
+  <h1 class="m-auto">{% if post.pk %}Beitrag bearbeiten{% else %}Neuen Beitrag hinzufügen{% endif %}</h1>
+</div>
+<hr>
+<form method="post"  enctype="multipart/form-data">
+  {% csrf_token %}  {% comment "" %} Cross Site Request Forgeries kümmert sich dieser Tag {% endcomment %}
+  {% comment "Erläuterungen - Button Parameter für Speichern und Abbruch der Eingabe" %}
+      name="Speichern" bzw. name="Abbruch" werden in der View weiterverarbeitet. Ein ändern muss auch in der view.py passieren
+  {% endcomment %}
+  <button type="submit" class="btn-blog" name="Speichern" >Speichern</button> 
+  <button type="submit" class="btn-post-danger" name="Abbruch" >Abbruch</button>
+  {{ form|crispy }}
+  
+  {% if post.pk %}
+    <div class="row">
+      <span class="fw-bold small">Hinterlegtes Bannerbild:</span>
+    </div>
+    <div class="row">
+      <img class="post-banner_bild" src="{{post.banner_bild.url}} " />
+    </div>
+  {% endif %}
+
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="btn-blog" name="Speichern" >Speichern</button> 
+      </div>
+      <div class="col">
+        <button type="submit" class="btn-post-danger" name="Abbruch" >Abbruch</button>
+      </div>
+    </div>
+
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row fw-bold text-dark">
+        <!--
+            text-start: Text wird linksbündig ausgegeben in der 1. Spalte
+        -->
+        <div class="col text-start">
+            {% if page.has_previous %}
+                <a href="?page={{ page.previous_page_number }}" class=" link-dark">zurück</a>
+            {% endif %}
+        </div>
+
+        <!--
+            text-center: Text wird zentriert ausgegeben in der 2. Spalte
+        -->
+        <div class="col text-center">
+            Seite {{ page.number }} von {{ page.paginator.num_pages }}
+        </div>
+
+        <!--
+            text-end: Text wird rechtsbündig ausgegeben in der 3. Spalte
+        -->
+        <div class="col text-end">
+            {% if page.has_next %}
+                <a href="?page={{ page.next_page_number }}" class="link-dark">nächste</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

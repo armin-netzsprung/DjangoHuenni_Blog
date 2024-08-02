@@ -1,0 +1,45 @@
+{% extends 'index.html' %} {% load static %} {% block content%}
+{% comment "Tutorial Beschreibung" %}
+    Alle Seiten sollen ja in diesem Tutorial immer die gleiche Kopf- und Fußzeile
+    enthalten. Dies wird mit dem Django tag extends bereitgestellt.
+    Im Django tag block content wird in diesem Bereich dieser Block in den content
+    Bereich der index.html Datei hineingeladen.
+    {% extends 'index.html' %}:     spezifiziert das Eltern Template, in diesem Fall unsere index.html
+    {% load static %}:              Lädt Templates Tags von anderen Librarys, hier aus der settings.py die Variable static
+    {% block endblock %}:           spezifiziert den Contentbereich. Es gibt ein Block-Anfang {% block <name> %} und Block-Ende {% endblock %}
+{% endcomment %}
+
+<h1>Home</h1>
+<h2>
+    Diese Seite ist noch im Aufbau ... bis 15.08.2024
+</h2>
+<p>
+    Ich heiße <b>Armin Hünniger</b> und bin gerne in der Natur mit meinem Hund.
+</p>
+<p>
+    Auf dieser Seite wird neben eine Tutorial Reihe zu den Themen Ubuntu, Python, Django, BootStrap auch eine Reihe an Beispielen
+    zu den wichtigsten Befehlen und Syntaxies, die man am häufigsten benötigt.
+</p>
+<p>
+    Es wird neben den bestehenden Repository "Django Template für Jedermann", noch ein weiteres geben zu diesem Blog.
+</p>
+<p>
+    Die Inhalte dieser Seite werden noch gefüllt, da diese Seite ebenfalls in Python und Django auf einen Plesk Server läuft.
+    Sie ist noch in der Entwicklungsphase. Sie besteht zur aus folgenden Apps:
+</p>
+    <li>huenni_blog</li>
+    <li>- login_reg</li>
+</br>
+<p>
+    <b>Und den Utility's:</b>
+</p>
+    <li>- huenni_utility</li>
+<p>
+    </br>Es wird auch das <strong>git und Plesk</strong> behandelt zum Versionieren auf github.com
+</p>
+    <p>
+    Viel Spaß ...
+</p>
+
+{% endblock content %}
+

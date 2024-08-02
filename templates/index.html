@@ -1,0 +1,480 @@
+<!-- AH 17.07.2024
+Django Template Tag	    Beschreibung
+{% load static %}	    Lädt den statischen Dateienbereich (staticfiles) in das Template und ermöglicht den Zugriff auf 
+                        statische Dateien wie CSS, JavaScript und Bilder.
+
+HTML Element	    Beschreibung
+<!DOCTYPE html>	    Deklariert das Dokument als HTML5-Dokument. Es ist notwendig, um den Browser darüber zu informieren, 
+                    welche Version von HTML verwendet wird.
+
+Tag	        Beschreibung
+<html>	    Definiert den Wurzel- oder Hauptcontainer eines HTML-Dokuments, das alle anderen Elemente umschließt.
+
+Attribut	Beschreibung
+lang="de"	Definiert die Sprache des HTML-Dokuments als Deutsch.
+-->
+
+{% load static %}
+<!doctype html>
+<html lang="de">
+    <!-- AH 17.07.2024
+        Der <head>-Tag im HTML-Dokument ist dazu da, Metadaten und andere Elemente zu enthalten, 
+        die nicht direkt im Anzeigebereich der Webseite sichtbar sind, aber für die Funktion und 
+        Darstellung der Seite wichtig sind. 
+        Hier die gängigsten Meta-Tag im <head> Bereich:
+
+        Meta-Tag	                    Beispiel	                                                              Beschreibung
+        Zeichensatz	                  <meta charset="UTF-8">	                                                Bestimmt den Zeichensatz des Dokuments (in diesem Fall UTF-8).
+        Beschreibung	                <meta name="description" content="Eine Beschreibung meiner Webseite">	  Eine kurze Beschreibung des Inhalts der Webseite, die von Suchmaschinen verwendet wird.
+        Schlüsselwörter	              <meta name="keywords" content="HTML, CSS, JavaScript, Webseite">	      Eine Liste von Schlüsselwörtern, die den Inhalt der Seite beschreiben und Suchmaschinen helfen, die Seite zu indexieren.
+        Autor	                        <meta name="author" content="Mein Name">	                              Gibt den Autor der Webseite an.
+        Viewport	                    <meta name="viewport" content="width=device-width, initial-scale=1.0">	Steuert die Layoutgröße und Skalierung auf mobilen Geräten.
+        Robots	                      <meta name="robots" content="index, follow">	                          Gibt den Suchmaschinen-Crawlern Anweisungen, wie sie die Seite behandeln sollen (z.B. ob sie die Seite indexieren und den Links folgen sollen).
+        Refresh	                      <meta http-equiv="refresh" content="30">	                              Lässt die Seite nach einer bestimmten Zeit (in Sekunden) automatisch neu laden.
+        X-UA-Compatible	              <meta http-equiv="X-UA-Compatible" content="IE=edge">	                  Legt fest, wie Internet Explorer die Seite rendern soll, um Kompatibilitätsprobleme zu vermeiden.
+        Content Security Policy (CSP)	<meta http-equiv="Content-Security-Policy" content="default-src 'self'">	    Hilft, verschiedene Arten von Angriffen wie Cross-Site Scripting (XSS) zu verhindern, indem es Quellen für Inhalte definiert.
+        Charakter-Set (älterer Standard)	     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	Ältere Methode zur Festlegung des Zeichensatzes, die jedoch immer noch in einigen alten Dokumenten zu finden ist.
+        Open Graph Tags (für soziale Medien)	 <meta property="og:title" content="Titel der Seite"><br><meta property="og:description" content="Beschreibung der Seite"><br><meta property="og:image" content="URL des Bildes"><br><meta property="og:url" content="URL der Seite">	        Verbessern die Darstellung der Seite, wenn sie in sozialen Medien geteilt wird.
+        Twitter Cards (für soziale Medien)	   <meta name="twitter:card" content="summary_large_image"><br><meta name="twitter:title" content="Titel der Seite"><br><meta name="twitter:description" content="Beschreibung der Seite"><br><meta name="twitter:image" content="URL des Bildes">	Verbessern die Darstellung der Seite, wenn sie auf Twitter geteilt wird.
+
+        Hier die gängigsten HTML-Tag im <head> Bereich:
+        HTML-Tag        Beispiel	                                        Beschreibung
+        <title>	        <title>Meine Webseite</title>	                    Definiert den Titel des Dokuments, der im Browser-Titelbalken und als Titel in Suchmaschinenergebnissen angezeigt wird.
+        <link>	        <link rel="stylesheet" href="styles.css">	        Verknüpft das HTML-Dokument mit externen Ressourcen wie Stylesheets oder Icons.
+        <style>	        <style>body { font-family: Arial; }</style>	        Enthält eingebettetes CSS, das für die Gestaltung der Webseite verwendet wird.
+        <script>	    <script src="script.js" defer></script>	            Fügt JavaScript in das Dokument ein. Das defer-Attribut sorgt dafür, dass das Skript nach dem Laden des HTML-Dokuments ausgeführt wird.
+        <base>	        <base href="https://www.example.com/">	            Gibt die Basis-URL für alle relativen URLs im Dokument an.
+        <noscript>	    <noscript>JavaScript ist deaktiviert</noscript>	    Wird verwendet, um Inhalte anzuzeigen, wenn JavaScript im Browser deaktiviert ist.
+    -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Armin Hünniger">
+    <meta name="generator" content="AH 1.00.0">
+    <title>Python - Django Entwicklung für Jedermann</title>
+
+
+    <!--
+        Dieser Link wird von BootStrap benötigt, es enthält die CSS Spezifikationen für das Stylesheeting. 
+        Näheres hierzu in der BootStrap Dokumentation
+        Bootstryp Icons: https://icons.getbootstrap.com/
+    -->
+    <link
+        href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.min.css' %}"
+        rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'bilder/favicon.png' %}" >
+    <style>
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        }
+
+        @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+        }
+    </style>
+
+
+</head>
+<!-- Ende das HEAD-->
+
+  <!--
+    Der <body>-Tag im HTML-Dokument enthält den gesamten Inhalt, der im Browser sichtbar ist. 
+    Dies umfasst Texte, Bilder, Links, Tabellen, Listen, Formulare und andere Elemente, die dem 
+    Benutzer angezeigt werden sollen. Der <body>-Tag ist somit der Hauptcontainer für den 
+    eigentlichen Inhalt einer Webseite. 
+    Hier die gängigsten HTML-Tag im <head> Bereich:
+
+    HTML-Tag	                    Beispiel	                                            Beschreibung
+    <h1> bis <h6>	                <h1>Überschrift 1</h1>	                                Überschriften-Tags, die von <h1> (wichtigste) bis <h6> (weniger wichtig) reichen.
+    <p>	                            <p>Dies ist ein Absatz.</p>	                            Definiert einen Absatz.
+    <ul>, <ol>, <li>	            <ul><li>Listelement 1</li><li>Listelement 2</li></ul>	Ungeordnete (unordered) und geordnete (ordered) Listen mit Listenelementen.
+    <img>	                        <img src="bild.jpg" alt="Beispielbild">	                Bindet ein Bild ein. Das alt-Attribut bietet eine Textalternative für das Bild.
+    <a>	                            <a href="https://www.example.com">Besuche Beispiel</a>	Definiert einen Hyperlink.
+    <table>, <tr>, <th>, <td>	    <table><tr><th>Überschrift 1</th><th>Überschrift 2</th></tr><tr><td>Daten 1</td><td>Daten 2</td></tr></table>	            Erstellt Tabellen mit Tabellenreihen (rows) und Tabellenzellen (cells).
+    <form>, <input>, <label>	    <form action="/submit" method="post"><label for="name">Name:</label><input type="text" id="name" name="name"><input type="submit" value="Absenden"></form>	Formulare für Benutzereingaben.
+    <video>, <source>	            <video controls><source src="video.mp4" type="video/mp4">Dein Browser unterstützt das Video-Tag nicht.</video>	            Fügt ein Video ein.
+    <audio>, <source>	            <audio controls><source src="audio.mp3" type="audio/mp3">Dein Browser unterstützt das Audio-Tag nicht.</audio>	            Fügt eine Audiodatei ein.
+    <script>	                    <script>document.addEventListener('DOMContentLoaded', function() { alert('Willkommen auf meiner Webseite!'); });</script>	Bindet JavaScript ein.
+    <div>	                        <div><p>Dies ist ein Absatz innerhalb eines div-Elements.</p></div>	    Block-Container für Gruppierung und Formatierung von Elementen.
+    <span>	                        <span>Dies ist ein inline-Element.</span>	            Inline-Container für Gruppierung und Formatierung von Textteilen.
+
+  -->
+  <body>
+    <div id="info-banner">+++ Django-Template-SQLite for free +++ Stand: 29.07.2024 18:30 Version: 1.30 +++</div>
+
+    <!--
+    Der <header>-Tag im HTML-Dokument wird verwendet, um ein thematisch zusammengehöriges Kopfsegment eines Inhaltsbereichs zu definieren. Dies kann für die gesamte Webseite oder für einzelne Sektionen der Seite gelten. Typische Inhalte eines <header>-Elements sind:
+        Logos: Visuelle Repräsentationen der Marke oder Webseite.
+        Navigationsleisten: Links zu den Hauptbereichen der Webseite.
+        Überschriften: Titel oder Slogans.
+        Suchfelder: Eingabefelder für die Suche auf der Webseite.
+    -->
+    <header class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">LOGO</a>
+
+
+          <!--
+            Hier wird das sogenannte Burger-Menü für kleine Anzeigen definiert
+          -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!--
+            Hier die Menü-Punkte
+            class="collapse navbar-collapse" hier wird der Inhalt der Navbar auf kleineren Bildschirmen 
+            (z.B. bei mobilen Geräten) standardmäßig ausgeblendet. Der Benutzer kann den Inhalt anzeigen, 
+            indem er auf eine Schaltfläche (Hamburger-Menü) klickt.
+          -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- 
+                class="nav-item" verwendet, um Elemente innerhalb einer Navigationsleiste (Navbar) oder einer 
+                anderen Navigationskomponente zu kennzeichnen. Diese Klasse stellt sicher, dass die Elemente, 
+                die sie enthalten, korrekt gestylt und ausgerichtet werden, um eine einheitliche und 
+                benutzerfreundliche Navigation zu gewährleisten.
+                -->
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'impressum' %}">Impressum</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'test' %}">Testseite</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Rubriken
+                </a>
+                <!--
+                class="dropdown-menu" wird verwendet, um ein Dropdown-Menü zu definieren. Ein Dropdown-Menü ist ein Menü, 
+                das sich öffnet, wenn der Benutzer auf eine Schaltfläche oder ein anderes Steuerelement klickt. Es enthält 
+                zusätzliche Optionen oder Navigationselemente, die normalerweise ausgeblendet sind, um Platz zu sparen oder 
+                um eine hierarchische Struktur darzustellen.
+                -->
+                <ul class="dropdown-menu">
+
+                  <li><a href="{% url 'post_list_rubric' filter="Ubuntu"  %}" class="link-dark"> Ubuntu </a></li>
+                  <li><a href="{% url 'post_list_rubric' filter="Python"  %}" class="link-dark"> Python </a></li>
+                  <li><a href="{% url 'post_list_rubric' filter="Django"  %}" class="link-dark"> Django </a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">BootStrap / HTML / CSS / JS</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">In Arbeit</a>
+              </li>
+            </ul>
+
+            <!-- Benutzer Login und Registrierungs Button's-->
+            <form class="d-flex" role="login">
+                <div class="user-panel border rounded-3 p-2 ">
+                    {% if request.user.is_authenticated %}
+                      Guten Tag: {{request.user|title}} <br />
+                      <a class="btn-blog" href="{% url 'logout' %}">Ausloggen</a>
+                    {% else %}
+                      Du bist nicht angemeldet!<br />
+                      <a class="btn-blog" href="{% url 'login' %}">Einloggen</a>
+                      <a class="btn-blog" href="{% url 'reg' %}">Registrieren</a>
+                    {% endif %}
+                    </div>
+            </form>
+
+        </div>
+        </div>
+      </nav>
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+          <a href="{% url 'post_list_rubric' filter="Ubuntu"  %}" class="p-2 link-secondary"> Ubuntu </a>
+          <a href="{% url 'post_list_rubric' filter="Python"  %}" class="p-2 link-secondary"> Python </a>
+          <a href="{% url 'post_list_rubric' filter="Django"  %}" class="p-2 link-secondary"> Django </a>
+          <a class="p-2 link-secondary" href="#">BootStrap</a>
+        </nav>
+    </div>
+    {% if messages %}
+    <div class="messages alert alert-danger" role="alert">
+      {% for message in messages %} {{ message }} {% endfor %}
+    </div>
+    {% endif %}
+    <div class="header-bild">
+      <img src="{% static 'bilder/banner-bild.jpg' %}" width="100%">
+      <p class="fw-bold">(c) Mein Freund Chapo beim Gassigehen 10.07.2024</p>
+    </div>
+
+</header>
+
+<!--
+Der <main>-Tag in HTML wird verwendet, um den Hauptinhalt einer Webseite zu kennzeichnen. 
+Er enthält typischerweise den zentralen oder primären Inhalt, der für die Nutzer relevant ist. 
+Der <main>-Tag ist semantisch wichtig, da er den Hauptinhalt einer Seite definiert und von 
+Browsern sowie von Suchmaschinen interpretiert wird.
+-->
+<main class="container">
+    <!--
+    Klasse	            Beschreibung
+    p-4	                Fügt einen Außenabstand (padding) von 1.5rem (24px) an allen Seiten des Elements hinzu.
+    p-md-5	            Fügt auf mittleren und größeren Bildschirmen einen Außenabstand (padding) von 3rem (48px) hinzu.
+    mb-4	            Fügt einen unteren Außenabstand (margin-bottom) von 1.5rem (24px) hinzu.
+    text-white	        Setzt die Textfarbe auf Weiß (#ffffff).
+    rounded	            Rundet die Ecken des Elements mit einem Radius von 0.25rem (4px).
+    bg-body-secondary	Setzt den Hintergrund des Elements auf die sekundäre Farbe von Bootstrap (#6c757d, grau).
+    -->
+  <div class="p-4 p-md-5 mb-4 text-white rounded bg-body-secondary">
+
+    <!--
+    Klasse	    Beschreibung
+    col-md-6	Definiert eine Spalte innerhalb eines Grid-Systems für mittlere (md) Bildschirme. Die Spalte nimmt auf mittleren Bildschirmen die Hälfte der verfügbaren Breite ein.
+    px-0	    Setzt den horizontalen Außenabstand (Padding) auf Null für das Element. Dadurch wird der Abstand links und rechts um das Element herum entfernt.
+    -->
+    <div class="col-md-6 px-0">
+        <!--
+        Klasse	    Beschreibung
+        display-4	Eine Bootstrap-Typografieklasse, die verwendet wird, um Texte mit einer großen, betonten Schriftart und einer deutlichen visuellen Hierarchie darzustellen.
+        fst-italic	Setzt den Text in kursiver Schrift (italic). Die Klasse fst-italic wird durch Bootstrap 5 für diesen Zweck bereitgestellt.
+        -->
+        <!--
+        Klasse	    Beschreibung
+        fst-italic	Setzt den Text in kursiver Schrift (italic).
+        fst-normal	Setzt den Text in normaler Schriftart (hebt font-weight: normal; hervor).
+        fst-bold	Setzt den Text in fette Schriftart (font-weight: bold;).
+        fst-bolder	Setzt den Text in fette Schriftart, wobei der Grad der Fettschrift stärker ist als bold.
+        fst-lighter	Setzt den Text in eine leichtere Schriftart, wobei der Grad der Leichtschrift stärker ist.
+        -- >
+      <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
+        <!--
+        Klasse	Beschreibung
+        lead	Verleiht einem Absatz oder Textelement eine erhöhte Textgröße und führt den Zeilenabstand auf 1.5em (1.5-facher Zeilenabstand) ein. Häufig für hervorgehobene Absätze verwendet.
+        my-3	Setzt den vertikalen Außenabstand (Margin) oberhalb und unterhalb des Elements auf 1rem (16px).
+        -->
+      <p class="lead my-3">
+        Nachdem ich etwas neues einmal wieder ausprobieren wollte, bin ich in den Recherchen im Internet auf Python und Django gestoßen.
+        Dieses ausführliche Tutorial entsteht daraus.
+      </p>
+      <p class="lead mb-0"><a href="#" class="text-dark fw-bold">weiterlesen ...</a></p>
+    </div>
+  </div>
+
+  <!-- BONUS: Unterschied zwischen fw-bold und fst-bold
+    Anwendungsgebiet:   fw-bold wird verwendet, um den Text direkt fett zu machen, während fst-bold eine CSS-Eigenschaft ist, 
+                        die die Schriftsynthese im Browser steuert.
+    Verfügbarkeit:      fw-bold ist spezifisch für Bootstrap und andere Frameworks, die das Bootstrap-System verwenden. fst-bold ist eine 
+                        CSS-Eigenschaft, die von modernen Browsern unterstützt wird.
+    Funktionalität:     fw-bold ändert das Erscheinungsbild des Textes direkt, während fst-bold eine Anweisung an den Browser ist, 
+                        wie er mit nicht verfügbaren Schriftarten oder Schriftgewichten umgehen soll.
+    In der Regel verwenden Entwickler fw-bold, wenn sie innerhalb eines Bootstrap-Projekts den Text fett darstellen möchten. fst-bold hingegen 
+    wird verwendet, um sicherzustellen, dass der Browser die Schrift fett darstellt, wenn die spezifizierte Schriftart oder das Schriftgewicht 
+    nicht verfügbar ist.
+  -->
+
+
+
+  <div class="row g-5">
+    <!-- AH ++++++++++++++++++++++++++++++++ Inhaltsbereich BEGIN
+    Hier geht der eigentliche Inhaltsbereich los
+    col-md-8: 8 Spalten für den Inhaltsbereich 
+    Weiter unten col-md-4 für die Sidebar
+    -->
+    <div class="col-md-8">
+        {% comment "Zu Testzwecken deaktiviert!" %}
+        <!--
+        Django Template Tag	    Beschreibung
+        {% block content %}	    Definiert einen Block namens content, der in einer Django Template-Datei verwendet wird, um den Hauptinhalt einer Seite zu definieren oder zu überschreiben.
+        -->
+        {% endcomment %}
+        {% block content %} {% endblock content %}
+
+
+    </div>
+    <!-- AH ++++++++++++++++++++++++++++++++ Inhaltsbereich END -->
+
+    <!-- AH ++++++++++++++++++++++++++++++++ Sidebar Begin
+    Hier die Sidebar z. B. für einen Blog
+    col-md-4 für die Sidebar
+    Weiter oben col-md-8 für den Inhaltsbereich
+    -->
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <!-- AH +++++++++++++++++++++++++++++++ Sprüche
+          Sprüche werden aus der Tabelle Spruch gezogen. Zur Zeit wird immer
+          der aktuellste angezeigt, der in die Tabelle geschrieben wurde.
+        -->
+        <div class="p-4 mb-3 bg-light rounded">
+          <p>Heute ist der: {% now "d.m.Y" %}</p>
+          <h4 class="fst-italic">Spruch des Tages</h4>
+          {% for spruch in spruch_posts.all %}
+            {% if forloop.first %}
+              <p class="mb-0">{{ spruch.content }}<p>
+              <p>- {{ spruch.erfinder}} -</p>  
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">Rubriken</h4>
+          <ol class="list-unstyled mb-0">
+            {% for rubric in blog_rubric.all %}
+              <li><a href="{% url 'post_list_rubric' filter=rubric.name  %}" class="link-dark"> {{ rubric.name }} </a></li>
+            {% endfor %}
+          </ol>
+        </div>
+
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">Kategorien</h4>
+          <ol class="list-unstyled mb-0">
+            {% for category in cats1.all %}
+              <li><a href="{% url 'post_list_category1' filter=category.id  %}" class="link-dark"> {{ category.name }} </a></li>
+            {% endfor %}
+          </ol>
+        </div>
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">Neuesten Beiträge</h4>
+          <ol class="list-unstyled">
+            {% for post in blog_posts.all %}
+              <li><a href="{% url 'post_list_title' filter=post.title  %}" class="link-dark"> {{ post.title }} </a></li>
+            {% endfor %}
+          </ol>
+        </div>
+      </div>
+    </div>
+    <!-- AH ++++++++++++++++++++++++++++++++ Sidebar END -->
+
+  </div>
+
+</main>
+
+<!--
+Tag	        Beschreibung
+<footer>	Definiert den Footer (Fußzeile) eines Dokuments oder einer Sektion.
+
+-->
+<footer class="blog-footer">
+    <div class="container text-center">
+        <p>NetzSprung.de - <strong>blog-kontakt@netzsprung.de</strong> - +49 174 574 68 55 - Armin Hünniger</p>
+        <p><a href="#">zum Anfang der Seite</a></p>
+    </div>
+</footer>
+
+
+    
+</body>
+
+<!--
+Dieses Script wird von BootStrap benÃ¶tigt. NÃ¤heres hierzu in der BootStryp Dokumentation
+-->
+<script src="{% static 'bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'tinymce_6.8.3_dev/tinymce/js/tinymce/tinymce.min.js' %}" referrerpolicy="origin"></script>
+<script>tinymce.init({
+  selector:'textarea', 
+  height: 500,
+  content_css:'{% static "css/style.css" %}',
+ 
+  image_title: true,
+  image_caption: true,
+  automatic_uploads: true,
+  image_advtab: true,
+  file_picker_types: "image media",
+
+  file_picker_callback: function (cb, value, meta) {
+    var input = document.createElement("input");
+    input.setAttribute("type", "file");
+    if (meta.filetype == "image") {
+        input.setAttribute("accept", "image/*");}
+    if (meta.filetype == "media") {
+    input.setAttribute("accept", "video/*");}
+
+    input.onchange = function () {     
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function () {
+            var id = "blobid" + (new Date()).getTime();
+            var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+            var base64 = reader.result.split(",")[1];
+            var blobInfo = blobCache.create(id, file, base64);
+            blobCache.add(blobInfo);
+           cb(blobInfo.blobUri(), { title: file.name });
+         };
+         reader.readAsDataURL(file);
+     };
+     input.click();
+  },
+
+
+  plugins: [
+    'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+    'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+    'media', 'table', 'emoticons', 'template', 'help', 'uploadimage', 'visualblocks', 'codesample'
+  ],
+
+  style_formats: [
+    { title: 'Headers', items: [
+      { title: 'Überschrift 1', block: 'h1' },
+      { title: 'Überschrift 2', block: 'h2' },
+      { title: 'Überschrift 3', block: 'h3' },
+      { title: 'Überschrift 4', block: 'h4' },
+      { title: 'Überschrift 5', block: 'h5' },
+      { title: 'Überschrift 6', block: 'h6' }
+    ] },
+
+    { title: 'Blocks', items: [
+      { title: 'Paragraph', block: 'p' },
+      { title: 'Container', block: 'div' },
+      { title: 'Code', block: 'code' },
+      { title: 'pre', block: 'pre' }
+      
+    ] },
+
+    { title: 'Containers', items: [
+      { title: 'section', block: 'section', wrapper: true, merge_siblings: false },
+      { title: 'article', block: 'article', wrapper: true, merge_siblings: false },
+      { title: 'blockquote', block: 'blockquote', wrapper: true },
+      { title: 'hgroup', block: 'hgroup', wrapper: true },
+      { title: 'aside', block: 'aside', wrapper: true },
+      { title: 'figure', block: 'figure', wrapper: true }
+    ] }
+  ],
+  visualblocks_default_state: true,
+  end_container_on_empty_block: true,
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+  toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+    'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+    'forecolor backcolor | uploadimage | codesample',
+    
+  codesample_languages: [
+    { text: 'HTML/XML', value: 'markup' },
+    { text: 'JavaScript', value: 'javascript' },
+    { text: 'CSS', value: 'css' },
+    { text: 'PHP', value: 'php' },
+    { text: 'Ruby', value: 'ruby' },
+    { text: 'Python', value: 'python' },
+    { text: 'Java', value: 'java' },
+    { text: 'C', value: 'c' },
+    { text: 'C#', value: 'csharp' },
+    { text: 'C++', value: 'cpp' }
+  ],
+
+  
+  });
+
+  tinymce.activeEditor.execCommand('CodeSample');
+  </script>
+
+</html>

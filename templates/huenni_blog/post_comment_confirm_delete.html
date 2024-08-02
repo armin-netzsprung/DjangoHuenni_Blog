@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+    <div class="d-flex align-items-center">
+        <h1 class="m-auto">Beitrag Löschen</h1>
+    </div>
+    <hr>
+    <p>Sind Sie sicher, dass Sie diesen Kommentar: "" {{comment.comment}} löschen möchten?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-post-danger">Löschen bestätigen</button>
+        <a href="{% url 'post_list' %}" class="btn-post-back">zurück ohne zu löschen</a>
+    </form>
+{% endblock %}
