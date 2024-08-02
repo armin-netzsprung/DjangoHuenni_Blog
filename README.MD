@@ -52,6 +52,7 @@ git push -u origin main
 ```
 
 
+
 ## Wichtige Django Template-Tags
 ```
 Tag	              Beschreibung
