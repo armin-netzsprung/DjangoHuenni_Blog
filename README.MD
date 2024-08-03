@@ -2,10 +2,11 @@
 ```
 Author:     Armin Hünniger
 Erstellt:   20.07.2024
-git:        DTSL-20240711-v02
+git:        
 ```
 
 # Intro
+
 
 # Notwendige Grundbefehele aus dem vorherigen Tutorial v1
 
@@ -21,8 +22,8 @@ pip install -r requirements.txt
 
 python manage.py shell
 - und in der Shell das Passwort zurücksetzen wenn z. B. Vergessen
-my_user = DjangoTemplate-SQLite.objects.filter(email="info@itleichtgemacht.de").first()
-my_user.set_password("NewPassword")
+my_user = DjangoTemplate-SQLite.objects.filter(email="vorname@test.de").first()
+my_user.set_password("NeuesPasswort")
 my_user.save()
 
 
@@ -140,52 +141,3 @@ https://testdriven.io/blog/django-static-files/
 
 
 
-
---- IDEEN
-- Know How Datenbank All mein Wissen
--- Tutorial's
---- Tabellen
-    Name: tutorials
-    Felder:
-        id
-        rubric          - Char(200)
-            z. B. Ubuntu, Python, Django, BootStrap, ...
-            z. B. Pyhton
-        titel
-
-        TypofBlogPage
-            z. B. Totorial
-            z. B. Post
-        category1       - Char(200)
-            z. B. Intro, Get Started, Sets, Tuples, Lists, ...
-            z. B. ---
-        category2       - Char(200)
-            z. B. Zugriff auf Tuples, Methoden, Funktionen, Befehl systemctl, 
-            z. B. ---
-        category3       - Char(200)
-            z. B. Methode count(), Methode index(), ...
-            z. B. ---
-        category4
-            z. B. 
-            z. B. 
-        category5       - Char(200)
-
-        content         - TinyMCE
-            z. B.   Beschreibung
-                    Verwendung
-                    Syntax
-                    Parameter
-                    Beispiel
-
-        contentshort    - TinyMCE
-        bannerbild      - image
-        attachments     - File
-
-        createat
-        publishedat
-
-
-
-
-
--- Syntax
